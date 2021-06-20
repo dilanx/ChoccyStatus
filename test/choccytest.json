@@ -1,0 +1,60 @@
+{
+    "title": "ChoccyStatus Test",
+    "notices": [
+        {
+            "title": "Emergency Notice",
+            "color": "red",
+            "text": "Example emergency notice message!"
+        },
+        {
+            "title": "Scheduled Maintenance",
+            "color": "blue",
+            "text": "Another example notice message! You can have as many of these as you want!"
+        }
+    ],
+    "blocks": [
+        {
+            "section_name": "TEST SECTION 1",
+            "content": [
+                {
+                    "name": "test server one",
+                    "status": "Operational"
+                },
+                {
+                    "name": "test server two",
+                    "status": "Under Maintenance",
+                    "description": "This server is currently under scheduled maintenance. Check back soon!"
+                }
+            ]
+        },
+        {
+            "section_name": "TEST SECTION 2",
+            "content": [
+                {
+                    "name": "test server three",
+                    "status": "Offline"
+                }
+            ]
+        }
+
+    ],
+
+    "settings": {
+
+        "default_color_map": {
+
+            "Operational": "#50c878",
+            "Offline": "#828282",
+            "Under Maintenance": "#7393b3"
+
+        },
+
+        "notice_colors": {
+
+            "red": "#c8392c",
+            "blue": "#7393b3"
+
+        }
+
+    }
+}
