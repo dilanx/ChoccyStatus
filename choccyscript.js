@@ -1,7 +1,6 @@
 function refresh() {
 
     let div = document.getElementById("choccydiv");
-    console.log(read(div.getAttribute("choccylink")));
     let j = JSON.parse(read(div.getAttribute("choccylink")));
 
     let settings = j.settings;
