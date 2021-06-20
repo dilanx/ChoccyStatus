@@ -92,7 +92,7 @@ function refresh() {
 
     let credits = document.createElement("a");
     credits.setAttribute("class", "choccybranding");
-    credits.setAttribute("href", "/");
+    credits.setAttribute("href", "https://github.com/dilanx/ChoccyStatus");
     credits.textContent = "Powered by ChoccyStatus.";
     div.appendChild(credits);
 
