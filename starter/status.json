@@ -1,0 +1,55 @@
+{
+    "title": "My Status",
+    "notices": [
+        {
+            "title": "Example Optional Notice",
+            "color": "blue",
+            "text": "Example emergency notice message!"
+        }
+    ],
+    "blocks": [
+        {
+            "section_name": "EXAMPLE SECTION 1",
+            "content": [
+                {
+                    "name": "Server 1",
+                    "status": "Operational"
+                },
+                {
+                    "name": "Server 2",
+                    "status": "Under Maintenance",
+                    "description": "This server is currently under scheduled maintenance. Check back soon!"
+                }
+            ]
+        },
+        {
+            "section_name": "EXAMPLE SECTION 2",
+            "content": [
+                {
+                    "name": "Server 3",
+                    "status": "Operational"
+                }
+            ]
+        }
+
+    ],
+
+    "settings": {
+
+        "default_color_map": {
+
+            "Operational": "#50c878",
+            "Offline": "#828282",
+            "Under Maintenance": "#7393b3"
+
+        },
+
+        "notice_colors": {
+
+            "red": "#c8392c",
+            "blue": "#7393b3"
+
+        }
+
+    }
+}
