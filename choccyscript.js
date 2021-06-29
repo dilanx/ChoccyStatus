@@ -67,6 +67,21 @@ function refresh() {
             name.textContent = content[j].name;
             ele2.appendChild(name);
 
+            let mcdata = null;
+            let mconline = false;
+            if ("minecraft" in content[j]) {
+                mcdata = JSON.parse(read("https://api.mcsrvstat.us/2/"
+                    + content[j].minecraft.ip));
+                mconline = mcdata.online;
+
+                if (mconline) {
+                    content[j].status = "Online";
+                } else {
+                    content[j].status = "Offline";
+                }
+
+            }
+
             let status = document.createElement("p");
             status.setAttribute("class", "choccyservicestatus");
             let s = content[j].status;
@@ -80,7 +95,76 @@ function refresh() {
                 desc.setAttribute("class", "choccyservicedesc");
                 desc.textContent = content[j].description;
                 ele2.appendChild(desc);
+
             }
+
+            if (mcdata != null) {
+
+                if (content[j].minecraft.show_name) {
+                    let mcname = document.createElement("p");
+                    mcname.setAttribute("class", "choccymcname");
+                    if ("name" in content[j].minecraft)
+                        mcname.innerHTML += content[j].minecraft.name.bold();
+                    if ("description" in content[j].minecraft)
+                        mcname.innerHTML += " " + content[j].minecraft.description;
+                    ele2.appendChild(mcname);
+                }
+
+                if (content[j].minecraft.show_player_count
+                    && mconline) {
+
+                    let mcplayers = document.createElement("p");
+                    mcplayers.setAttribute("class", "choccymcplayers");;
+
+                    let mcPlayerCount = 0;
+                    let playerNames = "";
+                    if (mconline) {
+
+                        mcPlayerCount = mcdata.players.online;
+
+                        if (content[j].minecraft.show_player_names) {
+                            if (mcPlayerCount > 0) {
+
+                                let mclist = mcdata.players.list;
+
+                                playerNames = mclist[0];
+
+                                for (let i = 1; i < mclist.length; i++) {
+                                    playerNames += ", " + mclist[i];
+                                }
+
+                            }
+                        }
+
+                    }
+
+                    if (mcPlayerCount === 0) {
+
+                        mcplayers.innerHTML += "No players online";
+
+                    } else {
+
+                        mcplayers.innerHTML += (mcPlayerCount + " player"
+                            + (mcPlayerCount > 1 ? "s" : "") + " online")
+
+                        if (playerNames !== "") {
+
+                            mcplayers.innerHTML += ": ";
+                            mcplayers.innerHTML = mcplayers.innerHTML.bold()
+                            mcplayers.innerHTML += playerNames;
+
+                        } else {
+
+                        }
+
+                    }
+
+                    ele2.appendChild(mcplayers);
+
+                }
+
+            }
+
             ele.appendChild(ele2);
 
         }

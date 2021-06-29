@@ -33,6 +33,17 @@
                 {
                     "name": "test server three",
                     "status": "Offline"
+                },
+                {
+                    "name": "test minecraft server",
+                    "minecraft": {
+                        "show_name": true,
+                        "show_player_count": true,
+                        "show_player_names": true,
+                        "name": "1",
+                        "description": "My Minecraft Server",
+                        "ip": "minecraft.iphere"
+                    }
                 }
             ]
         }
@@ -44,6 +55,7 @@
         "default_color_map": {
 
             "Operational": "#50c878",
+            "Online": "#50c878",
             "Offline": "#828282",
             "Under Maintenance": "#7393b3"
 
