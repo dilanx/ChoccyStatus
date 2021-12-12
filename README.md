@@ -6,6 +6,10 @@ A nice, customizable, open-source, JSON based status page for static sites. [Che
 <img src="ChoccyStatusImage.png" width="440" height="423">
 </p>
 
+### Notice!
+ChoccyStatus 2 is coming soon! The UI will be similar but will be more responsive to different screen sizes, and there will be more features like dynamically updating status through API calls.
+
+
 # Setup Guide
 
 It's super easy to get this working. Make a new HTML page on your website using the [starter HTML](starter/status.html).
