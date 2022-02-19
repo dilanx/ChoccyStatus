@@ -1,0 +1,153 @@
+#choccy-div {
+    font-family: verdana;
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 0 8px;
+}
+
+.cs-header {
+    padding: 20px;
+}
+
+.cs-title {
+    font-size: 24px;
+    text-align: center;
+    margin: 0;
+}
+
+.cs-notice {
+    border-radius: 8px;
+    border: 1px solid black;
+    overflow: hidden;
+    margin: 40px 10px;
+    --link-color: black;
+}
+
+.cs-notice-title {
+    padding: 10px;
+    background-color: black;
+}
+
+.cs-notice-title p {
+    margin: 0;
+    font-size: 16px;
+    color: white;
+}
+
+.cs-notice-contents {
+    padding: 5px 10px;
+}
+
+.cs-notice-contents p {
+    margin: 0;
+    padding: 5px 0;
+    font-size: 12px;
+    color: #1f2937;
+}
+
+.cs-notice-contents p a {
+    color: var(--link-color);
+    text-decoration: none;
+}
+
+.cs-notice-contents p a:hover {
+    text-decoration: underline;
+}
+
+.cs-section {
+    padding: 20px 10px;
+}
+
+.cs-section-name p {
+    font-size: 14px;
+    margin: 0;
+    font-weight: bold;
+    color: #9ca3af;
+}
+
+.cs-contents {
+    border-radius: 8px;
+    margin: 10px 0;
+    border: 2px solid #d1d5db;
+    list-style: none;
+    padding: 0;
+}
+
+.cs-service {
+    padding: 10px 10px;
+    margin: 0;
+}
+
+.cs-service:not(:last-child) {
+    border-bottom: 1px solid #d1d5db;
+}
+
+.cs-status {
+    display: flex;
+    font-size: 14px;
+    padding: 5px 0;
+}
+
+.cs-status-name {
+    margin: 0;
+    flex: 2;
+}
+
+.cs-status-status {
+    flex: 1;
+    text-align: right;
+    margin: 0;
+}
+
+.cs-mc {
+    margin: 0;
+    padding: 5px 0;
+}
+
+.cs-mc-description {
+    margin: 0;
+    font-size: 12px;
+    color: #374151;
+}
+
+.cs-mc-name {
+    font-weight: bold;
+}
+
+.cs-mc-players {
+    font-size: 12px;
+    margin: 0;
+    color: #9ca3af;
+}
+
+.cs-description {
+    font-size: 12px;
+    color: #4b5563;
+    padding: 5px 0;
+    margin: 0;
+}
+
+.cs-footer {
+    padding: 0px;
+}
+
+.cs-watermark {
+    text-align: center;
+    font-size: 12px;
+    margin: 0;
+}
+
+.cs-watermark a {
+    color: #9ca3af;
+    text-decoration: none;
+    transition: color 150ms;
+}
+
+.cs-watermark a:hover {
+    color: #623412;
+}
+
+body {
+    background-color: #FFFFFF;
+    margin: 0;
+}

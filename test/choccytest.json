@@ -2,54 +2,44 @@
     "title": "ChoccyStatus Test",
     "notices": [
         {
-            "title": "Emergency Notice",
+            "title": "Example notice!",
             "color": "red",
-            "text": "Example emergency notice message!"
-        },
-        {
-            "title": "Scheduled Maintenance",
-            "color": "blue",
-            "text": "Another example notice message! You can have as many of these as you want!"
+            "contents": [
+                "Here's an example notice!",
+                "You can have multiple lines and even use HTML. <a href=\"https://github.com/dilanx/ChoccyStatus\">Check out this link!</a>"
+            ]
         }
     ],
-    "blocks": [
+    "sections": [
         {
-            "section_name": "TEST SECTION 1",
-            "content": [
+            "name": "Section 1",
+            "contents": [
                 {
-                    "name": "test server one",
+                    "name": "Service 1",
                     "status": "Operational"
                 },
                 {
-                    "name": "test server two",
-                    "status": "Under Maintenance",
-                    "description": "This server is currently under scheduled maintenance. Check back soon!"
+                    "name": "Service 2",
+                    "status": "Operational",
+                    "description": "Here's a description!"
                 }
             ]
         },
         {
-            "section_name": "TEST SECTION 2",
-            "content": [
+            "name": "Section 2",
+            "contents": [
                 {
-                    "name": "test server three",
-                    "status": "Offline"
+                    "name": "Service 1",
+                    "status": "Operational"
                 },
                 {
-                    "name": "test minecraft server",
-                    "minecraft": {
-                        "show_name": true,
-                        "show_player_count": true,
-                        "show_player_names": true,
-                        "name": "1",
-                        "description": "My Minecraft Server",
-                        "ip": "minecraft.iphere"
-                    }
+                    "name": "Service 2",
+                    "status": "Operational",
+                    "description": "Here's a description!"
                 }
             ]
         }
-
     ],
-
     "settings": {
 
         "default_color_map": {
