@@ -34,176 +34,183 @@ function load() {
 
     let notices = data.notices;
 
-    for (let i = 0; i < notices.length; i++) {
+    if (notices) {
 
-        let notice = notices[i];
+        for (let i = 0; i < notices.length; i++) {
 
-        let noticeDiv = document.createElement('div');
-        noticeDiv.className = 'cs-notice';
+            let notice = notices[i];
 
-        let noticeTitleDiv = document.createElement('div');
-        noticeTitleDiv.className = 'cs-notice-title';
-        let noticeTitle = document.createElement('p');
-        noticeTitle.textContent = notice.title;
-        noticeTitleDiv.appendChild(noticeTitle);
-        noticeDiv.appendChild(noticeTitleDiv);
+            let noticeDiv = document.createElement('div');
+            noticeDiv.className = 'cs-notice';
 
-        let contentsDiv = document.createElement('div');
-        contentsDiv.className = 'cs-notice-contents';
+            let noticeTitleDiv = document.createElement('div');
+            noticeTitleDiv.className = 'cs-notice-title';
+            let noticeTitle = document.createElement('p');
+            noticeTitle.textContent = notice.title;
+            noticeTitleDiv.appendChild(noticeTitle);
+            noticeDiv.appendChild(noticeTitleDiv);
 
-        let contents = notice.contents;
+            let contentsDiv = document.createElement('div');
+            contentsDiv.className = 'cs-notice-contents';
 
-        for (let j = 0; j < contents.length; j++) {
+            let contents = notice.contents;
 
-            let noticeContentsP = document.createElement('p');
-            noticeContentsP.innerHTML = contents[j];
-            contentsDiv.appendChild(noticeContentsP);
+            for (let j = 0; j < contents.length; j++) {
+
+                let noticeContentsP = document.createElement('p');
+                noticeContentsP.innerHTML = contents[j];
+                contentsDiv.appendChild(noticeContentsP);
+
+            }
+
+            noticeDiv.appendChild(contentsDiv);
+
+            if (notice.color in noticeColors) {
+                let color = noticeColors[notice.color];
+                noticeDiv.style.borderColor = color;
+                noticeDiv.style.setProperty('--link-color', color);
+                noticeTitleDiv.style.backgroundColor = color;
+            }
+
+            div.appendChild(noticeDiv);
 
         }
-
-        noticeDiv.appendChild(contentsDiv);
-
-        if (notice.color in noticeColors) {
-            let color = noticeColors[notice.color];
-            noticeDiv.style.borderColor = color;
-            noticeDiv.style.setProperty('--link-color', color);
-            noticeTitleDiv.style.backgroundColor = color;
-        }
-
-        div.appendChild(noticeDiv);
 
     }
 
     let sections = data.sections;
 
-    for (let i = 0; i < sections.length; i++) {
+    if (sections) {
 
-        let section = sections[i];
+        for (let i = 0; i < sections.length; i++) {
 
-        let sectionDiv = document.createElement('div');
-        sectionDiv.className = 'cs-section';
+            let section = sections[i];
 
-        let sectionNameDiv = document.createElement('div');
-        sectionNameDiv.className = 'cs-section-name';
-        let sectionName = document.createElement('p');
-        sectionName.textContent = section.name;
-        sectionNameDiv.appendChild(sectionName);
-        sectionDiv.appendChild(sectionNameDiv);
+            let sectionDiv = document.createElement('div');
+            sectionDiv.className = 'cs-section';
 
-        let contentsList = document.createElement('ul');
-        contentsList.className = 'cs-contents';
+            let sectionNameDiv = document.createElement('div');
+            sectionNameDiv.className = 'cs-section-name';
+            let sectionName = document.createElement('p');
+            sectionName.textContent = section.name;
+            sectionNameDiv.appendChild(sectionName);
+            sectionDiv.appendChild(sectionNameDiv);
 
-        let contents = section.contents;
+            let contentsList = document.createElement('ul');
+            contentsList.className = 'cs-contents';
 
-        for (let j = 0; j < contents.length; j++) {
+            let contents = section.contents;
 
-            let service = contents[j];
+            for (let j = 0; j < contents.length; j++) {
 
-            let status = null;
+                let service = contents[j];
 
-            let serviceItem = document.createElement('li');
-            serviceItem.className = 'cs-service';
+                let status = null;
 
-            let statusDiv = document.createElement('div');
-            statusDiv.className = 'cs-status';
-            let statusName = document.createElement('p');
-            statusName.className = 'cs-status-name';
-            statusName.textContent = service.name;
-            statusDiv.appendChild(statusName);
+                let serviceItem = document.createElement('li');
+                serviceItem.className = 'cs-service';
 
-            let statusStatus = document.createElement('p');
-            statusStatus.className = 'cs-status-status';
-            statusDiv.appendChild(statusStatus);
+                let statusDiv = document.createElement('div');
+                statusDiv.className = 'cs-status';
+                let statusName = document.createElement('p');
+                statusName.className = 'cs-status-name';
+                statusName.textContent = service.name;
+                statusDiv.appendChild(statusName);
 
-            serviceItem.appendChild(statusDiv);
+                let statusStatus = document.createElement('p');
+                statusStatus.className = 'cs-status-status';
+                statusDiv.appendChild(statusStatus);
 
-            if (service.request) {
-                let loaded = read(service.request.url);
-                status = (loaded ? service.request.success : service.request.failure);
-            }
+                serviceItem.appendChild(statusDiv);
 
-            if (service.minecraft) {
+                if (service.request) {
+                    let loaded = read(service.request.url);
+                    status = (loaded ? service.request.success : service.request.failure);
+                }
 
-                let mcData = JSON.parse(read('https://api.mcsrvstat.us/2/' + service.minecraft.ip));
+                if (service.minecraft) {
 
-                status = mcData.online ? 'Online' : 'Offline';
+                    let mcData = JSON.parse(read('https://api.mcsrvstat.us/2/' + service.minecraft.ip));
 
-                let mcn = service.minecraft.name;
-                let mcd = service.minecraft.description;
-                let mcpc = service.minecraft.show_player_count;
-                let mcpn = service.minecraft.show_player_names;
+                    status = mcData.online ? 'Online' : 'Offline';
 
-                if (mcn || mcd || mcpc) {
+                    let mcn = service.minecraft.name;
+                    let mcd = service.minecraft.description;
+                    let mcpc = service.minecraft.show_player_count;
+                    let mcpn = service.minecraft.show_player_names;
 
-                    let minecraftDiv = document.createElement('div');
-                    minecraftDiv.className = 'cs-mc';
+                    if (mcn || mcd || mcpc) {
 
-                    if (mcn || mcd) {
-                        let minecraftDescription = document.createElement('p');
-                        minecraftDescription.className = 'cs-mc-description';
-                        if (mcn) {
-                            let minecraftName = document.createElement('span');
-                            minecraftName.className = 'cs-mc-name';
-                            minecraftName.textContent = mcn;
-                            minecraftDescription.appendChild(minecraftName);
-                        }
-                        if (mcd) {
-                            minecraftDescription.appendChild(document.createTextNode((mcn ? ' ' : '') + mcd));
-                        }
-                        minecraftDiv.appendChild(minecraftDescription);
-                    }
-                    if (mcpc && mcData.online) {
-                        let minecraftPlayers = document.createElement('p');
-                        minecraftPlayers.className = 'cs-mc-players';
-                        let mcCount = mcData.players.online;
-                        if (mcCount === 0) {
-                            minecraftPlayers.textContent = 'No players online';
-                        } else {
-                            let mcCountStr = `${mcCount} player${mcCount > 1 ? 's' : ''} online`;
-                            if (mcpn) {
-                                let mcList = mcData.players.list;
-                                let mcListStr = mcList[0];
-                                for (let i = 1; i < mcList.length; i++) mcListStr += ', ' + mcList[i];
-                                let minecraftCount = document.createElement('span');
-                                minecraftCount.className = 'cs-mc-count';
-                                minecraftCount.textContent = mcCountStr;
-                                minecraftPlayers.appendChild(minecraftCount);
-                                minecraftPlayers.appendChild(document.createTextNode(' - ' + mcListStr));
-                            } else {
-                                minecraftPlayers.textContent = mcCountStr;
+                        let minecraftDiv = document.createElement('div');
+                        minecraftDiv.className = 'cs-mc';
+
+                        if (mcn || mcd) {
+                            let minecraftDescription = document.createElement('p');
+                            minecraftDescription.className = 'cs-mc-description';
+                            if (mcn) {
+                                let minecraftName = document.createElement('span');
+                                minecraftName.className = 'cs-mc-name';
+                                minecraftName.textContent = mcn;
+                                minecraftDescription.appendChild(minecraftName);
                             }
+                            if (mcd) {
+                                minecraftDescription.appendChild(document.createTextNode((mcn ? ' ' : '') + mcd));
+                            }
+                            minecraftDiv.appendChild(minecraftDescription);
                         }
-                        minecraftDiv.appendChild(minecraftPlayers);
-                    }
+                        if (mcpc && mcData.online) {
+                            let minecraftPlayers = document.createElement('p');
+                            minecraftPlayers.className = 'cs-mc-players';
+                            let mcCount = mcData.players.online;
+                            if (mcCount === 0) {
+                                minecraftPlayers.textContent = 'No players online';
+                            } else {
+                                let mcCountStr = `${mcCount} player${mcCount > 1 ? 's' : ''} online`;
+                                if (mcpn) {
+                                    let mcList = mcData.players.list;
+                                    let mcListStr = mcList[0];
+                                    for (let i = 1; i < mcList.length; i++) mcListStr += ', ' + mcList[i];
+                                    let minecraftCount = document.createElement('span');
+                                    minecraftCount.className = 'cs-mc-count';
+                                    minecraftCount.textContent = mcCountStr;
+                                    minecraftPlayers.appendChild(minecraftCount);
+                                    minecraftPlayers.appendChild(document.createTextNode(' - ' + mcListStr));
+                                } else {
+                                    minecraftPlayers.textContent = mcCountStr;
+                                }
+                            }
+                            minecraftDiv.appendChild(minecraftPlayers);
+                        }
 
-                    serviceItem.appendChild(minecraftDiv);
+                        serviceItem.appendChild(minecraftDiv);
+
+                    }
 
                 }
 
+                if (!status) status = service.status;
+
+                if (status in colorMap) {
+                    statusStatus.style.color = colorMap[status];
+                }
+                statusStatus.textContent = status;
+
+                if (service.description) {
+                    let description = document.createElement('p');
+                    description.className = 'cs-description';
+                    description.textContent = service.description;
+                    serviceItem.appendChild(description);
+                }
+
+                contentsList.appendChild(serviceItem);
+
             }
 
-            if (!status) status = service.status;
+            sectionDiv.appendChild(contentsList);
 
-            if (status in colorMap) {
-                statusStatus.style.color = colorMap[status];
-            }
-            statusStatus.textContent = status;
-
-            if (service.description) {
-                let description = document.createElement('p');
-                description.className = 'cs-description';
-                description.textContent = service.description;
-                serviceItem.appendChild(description);
-            }
-
-            contentsList.appendChild(serviceItem);
+            div.appendChild(sectionDiv);
 
         }
-
-        sectionDiv.appendChild(contentsList);
-
-        div.appendChild(sectionDiv);
-
     }
 
     div.appendChild(footerDiv);
