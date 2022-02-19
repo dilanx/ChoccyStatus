@@ -188,7 +188,7 @@ function load() {
 
                 }
 
-                if (!status) status = service.status;
+                if (service.status) status = service.status;
 
                 if (status in colorMap) {
                     statusStatus.style.color = colorMap[status];
